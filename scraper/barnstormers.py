@@ -45,13 +45,13 @@ GENERIC_SITE_TITLE_SNIPPET = "barnstormers.com find aircraft"
 
 _MAULE_RE = re.compile(r"\bmaule", re.IGNORECASE)
 # Model code: series prefix (M, MX, MXT, MT) and number (4-9), then optionally
-# the engine horsepower and a variant letter - "M-5-235C", "MX-7-180A",
-# "MXT-7-180". Titles come from URL slugs, whose hyphens read as spaces
+# the engine horsepower and a variant letter (or "TC" for turbocharged) -
+# "M-5-235C", "M-5-210TC", "MX-7-180A", "MXT-7-180". Titles come from URL slugs, whose hyphens read as spaces
 # ("M 7 235"), so any separator is accepted.
 _CODE_RE = re.compile(
     r"\b(mxt|mx|mt|m)\s?-?\s?([4-9])"
     r"(?:\s?-?\s?(145|150|160|180|210|220|230|235|260|420))?"
-    r"(?:\s?-?\s?([a-c]))?(?![\da-z])",
+    r"(?:\s?-?\s?(tc|[a-c]))?(?![\da-z])",
     re.IGNORECASE,
 )
 # Model names, most specific first.

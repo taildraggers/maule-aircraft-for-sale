@@ -287,6 +287,9 @@ def is_non_aircraft_ad(title: str) -> bool:
     # just hyphens/underscores - otherwise a keyword directly followed by
     # punctuation (e.g. "cowl, engine mount") slips past the check below,
     # since " cowl " with a trailing space would never match "cowl,".
+    # Split words run together in camel case ("carbon engCowl") so the
+    # keyword check below still sees them.
+    title = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", title)
     normalized = re.sub(r"[^a-z0-9]+", " ", title.lower())
     normalized = " " + normalized.strip() + " "
     for phrase in ALLOWED_PHRASES:
